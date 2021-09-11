@@ -1,4 +1,3 @@
-//imports needed for this function
 const axios = require('axios');
 const fs = require('graceful-fs');
 const FormData = require('form-data');
@@ -17,7 +16,7 @@ module.exports.pinFolder = async (key, secret, path, options = {}) => {
 
             //for each file stream, we need to include the correct relative file path
             data.append(`file`, fs.createReadStream(file), {
-                filepath: `tokens/${optionsfileName}`
+                filepath: `${dirs}/${finalName}`
             });
         });
 
