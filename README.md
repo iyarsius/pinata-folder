@@ -3,13 +3,13 @@ Pin larges directories to pinata
 
 # install
 `
-npm i pinata-folders
+npm i pinata-folder
 `
 
 # use
 
 ```js
-const pinataFolders = require('pinata-folders');
+const pinataFolders = require('pinata-folder');
 
 // upload large directories without file limit
 pinataFolders.pinFolder(key, secret, path, options)
@@ -19,8 +19,10 @@ pinataFolders.pinFolder(key, secret, path, options)
 
 # options
 
-remove file extension from ipfs url
+remove file extension from ipfs url:
+
 `removeExt: boolean`
 
-set pinata folder name
+set pinata folder name:
+
 `folderName: string`
