@@ -1,0 +1,30 @@
+{
+  "name": "pinata-folder",
+  "version": "1.0.0",
+  "description": "Pin larges directories to pinata",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iyarsius/pinata-folders.git"
+  },
+  "keywords": [
+    "pinata",
+    "folder",
+    "ipfs"
+  ],
+  "author": "iyarsius",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iyarsius/pinata-folders/issues"
+  },
+  "homepage": "https://github.com/iyarsius/pinata-folders#readme",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "form-data": "^4.0.0",
+    "graceful-fs": "^4.2.8",
+    "recursive-fs": "^2.1.0"
+  }
+}
