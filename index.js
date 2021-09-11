@@ -7,7 +7,8 @@ module.exports.pinFolder = async (key, secret, path, options = {}) => {
     const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
 
     //we gather the files from a local directory in this example, but a valid readStream is all that's needed for each file in the directory.
-    recursive.readdirr(path, async function (err, dirs, files) {
+    return await new Promise((resolve, reject) => {
+        recursive.readdirr(path, async function (err, dirs, files) {
         let data = new FormData();
         files.forEach((file) => {
             const fileName = file.split("/").pop();
@@ -25,7 +26,7 @@ module.exports.pinFolder = async (key, secret, path, options = {}) => {
         });
         data.append('pinataMetadata', metadata);
 
-        return axios.post(url, data, {
+        axios.post(url, data, {
             maxBodyLength: 'Infinity', // this is needed to prevent axios from erroring out with large directories
             headers: {
                 'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
@@ -33,11 +34,12 @@ module.exports.pinFolder = async (key, secret, path, options = {}) => {
                 pinata_secret_api_key: secret
             }
         })
-            .then(function (response) {
-                return `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`
+            .then(response => {
+                resolve(`https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`)
             })
-            .catch(function (error) {
-                throw error
+            .catch(error => {
+                reject(error)
             });
+        });
     });
 };
